@@ -27,15 +27,6 @@
         tools:layout_editor_absoluteX="206dp"
         tools:layout_editor_absoluteY="97dp" />
 
-    <ImageButton
-        android:id="@+id/goButt"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/go"
-        tools:layout_editor_absoluteY="295dp" />
-
     <ImageView
         android:id="@+id/dol"
         android:layout_width="100dp"
@@ -46,8 +37,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goButt"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/dol" />
+
+    <ImageButton
+        android:id="@+id/goButts"
+        android:layout_width="182dp"
+        android:layout_height="165dp"
+        android:background="@null"
+        app:srcCompat="@drawable/go"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="272dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
