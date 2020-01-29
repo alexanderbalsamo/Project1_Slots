@@ -27,10 +27,10 @@
         tools:layout_editor_absoluteX="206dp"
         tools:layout_editor_absoluteY="97dp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/goButt"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/go"
