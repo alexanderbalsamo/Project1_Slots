@@ -2,4 +2,5 @@
     <string name="app_name">Flower Slots</string>
     <string name="one_a_play">$1 a Play</string>
     <string name="match_rules">Match 0 - Lose $1 \nMatch 2 - Win  $2  \nMatch 3 - Win  $3</string>
+    <string name="money">$5</string>
 </resources>

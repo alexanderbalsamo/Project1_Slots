@@ -14,8 +14,8 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"
         android:text="@string/one_a_play"
-        android:textStyle="bold"
         android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/redFlower"
         app:layout_constraintHorizontal_bias="0.174"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -30,8 +30,8 @@
         android:layout_marginTop="60dp"
         android:layout_marginBottom="20dp"
         android:text="@string/match_rules"
-        android:textStyle="bold"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/redFlower3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.829"
@@ -109,11 +109,11 @@
         app:srcCompat="@drawable/f3" />
 
     <ImageButton
-        android:onClick="reset"
         android:id="@+id/resetButt"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@null"
+        android:onClick="reset"
         android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -123,5 +123,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.974"
         app:srcCompat="@drawable/reset1" />
+
+    <TextView
+        android:id="@+id/money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="36dp"
+        android:text="@string/money"
+        android:textColor="@color/colorPrimary"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/resetButt"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/dol" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
