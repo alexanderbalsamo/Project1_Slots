@@ -113,7 +113,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@null"
-        android:onClick="reset"
+        android:onClick="resetButt"
         android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -128,16 +128,15 @@
         android:id="@+id/money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginEnd="120dp"
         android:layout_marginBottom="36dp"
-        android:text="@string/money"
+        android:text="@string/wallet"
         android:textColor="@color/colorPrimary"
         android:textSize="45dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/resetButt"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toEndOf="@+id/dol" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
