@@ -2,13 +2,18 @@ package com.example.project1_slots;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.project1_slots.CONSTANTS;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Balsamo";
@@ -17,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
     TextView wallet;
     int startupCash = CONSTANTS.STARTUP_CASH;
     int money = startupCash;
+
+    // Flowers
+    List<ImageView> slots;
+    List<Integer> flowers;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +37,57 @@ public class MainActivity extends AppCompatActivity {
         wallet = (TextView)findViewById(R.id.money);
         wallet.setText(String.format("$%s", Integer.toString(startupCash)));
         Log.d(TAG, "Money you have on startUp should = 5: " + Integer.toString(money)); //debug statement
+
+        // Grab ImageViews
+        slots = new ArrayList<>();
+        ImageView s1 = (ImageView)findViewById(R.id.slot1);
+        ImageView s2 = (ImageView)findViewById(R.id.slot2);
+        ImageView s3 = (ImageView)findViewById(R.id.slot3);
+        slots.add(s1);
+        slots.add(s2);
+        slots.add(s3);
+
+        // Grab Flowers
+        flowers = new ArrayList<>();
+        int f1 = R.drawable.f1;
+        int f2 = R.drawable.f2;
+        int f3 = R.drawable.f3;
+        flowers.add(f1);
+        flowers.add(f2);
+        flowers.add(f3);
     }
 
     public void goButt(View view) {
+        tempFlowers();
+        rotateFlower();
+        chooseFlowers();
+    }
+
+    private void tempFlowers() {
+        for(int i = 0; i < CONSTANTS.NUMB_FLOWERS; i++){
+            ImageView slot = slots.get(i); // get each ImageViews
+            slot.setImageResource(R.drawable.tmp); // Set each ImageView to be a tmp.png
+        }
+    }
+
+    private void rotateFlower() {
+    }
+
+    private void chooseFlowers() {
+        // Pull the slot machine
+        ArrayList<Integer> flowersList = new ArrayList<>();
+        for(int i = 0; i < CONSTANTS.NUMB_FLOWERS; i++) {
+            Random rand = new Random();
+            int randFlower = flowers.get(rand.nextInt(CONSTANTS.NUMB_FLOWERS)); // get a random flower
+            ImageView slot = slots.get(i);
+            slot.setImageResource(randFlower); // set the slot imageView to be a random flower
+            flowersList.add(randFlower); //save list for comparisons
+        }
+
+        // Record your score!
+        for(int j = 0; j < flowersList.size(); j++){
+            flowersList.contains();
+        }
     }
 
     public void resetButt(View view) {
