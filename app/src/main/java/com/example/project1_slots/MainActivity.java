@@ -7,11 +7,14 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -27,11 +30,19 @@ public class MainActivity extends AppCompatActivity {
     List<ImageView> slots;
     List<Integer> flowers;
 
+    // Buttons
+    ImageButton goButt;
+    ImageButton resetButt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initializing Buttons
+        goButt = findViewById(R.id.goButt);
+        resetButt = findViewById(R.id.resetButt);
 
         // Start up Money
         wallet = (TextView)findViewById(R.id.money);
@@ -60,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     public void goButt(View view) {
         tempFlowers();
         rotateFlower();
+        showReset();
         chooseFlowers();
     }
 
@@ -71,6 +83,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rotateFlower() {
+
+    }
+
+    private void showReset() {
+        ImageButton resetButt = findViewById(R.id.resetButt); // get Reset Button ID
+        resetButt.setVisibility(View.VISIBLE); // make button visible
     }
 
     private void chooseFlowers() {
@@ -84,12 +102,35 @@ public class MainActivity extends AppCompatActivity {
             flowersList.add(randFlower); //save list for comparisons
         }
 
-        // Record your score!
+        // Find the number of matching flowers
+        int maxOccurances = 0;
         for(int j = 0; j < flowersList.size(); j++){
-            flowersList.contains();
+            int occurances = Collections.frequency(flowersList, flowersList.get(j));
+            if(occurances > maxOccurances)
+                maxOccurances = occurances;
+        }
+
+        // Record Score!
+        if(maxOccurances == 1)
+            money = money - 1;
+        else if(maxOccurances == 2)
+            money = money + 2;
+        else
+            money = money + 3;
+
+        // Update your wallet
+        wallet.setText(String.format("$%s", Integer.toString(money)));
+
+        // Empty Wallet Condition
+        if(money == 0) {
+            goButt.setEnabled(false);
+            goButt.setVisibility(View.INVISIBLE);
         }
     }
 
     public void resetButt(View view) {
+        money = 5; // reset money to $5
+        wallet.setText(String.format("$%s", Integer.toString(money))); // reset wallet
+        resetButt.setVisibility(View.INVISIBLE); // turn reset Button invisible
     }
 }

@@ -54,7 +54,7 @@
         app:srcCompat="@drawable/dol" />
 
     <ImageButton
-        android:id="@+id/goButt"
+            android:id="@+id/goButt"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:background="@null"
