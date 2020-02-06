@@ -7,6 +7,8 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +22,9 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Balsamo";
+
+    // Animation
+    private Animation animRotate;
 
     // Dealing with Money
     TextView wallet;
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         resetButt = findViewById(R.id.resetButt);
 
         // Start up Money
-        wallet = (TextView)findViewById(R.id.money);
+        wallet = findViewById(R.id.money);
         wallet.setText(String.format("$%s", Integer.toString(startupCash)));
         Log.d(TAG, "Money you have on startUp should = 5: " + Integer.toString(money)); //debug statement
 
@@ -66,13 +71,30 @@ public class MainActivity extends AppCompatActivity {
         flowers.add(f1);
         flowers.add(f2);
         flowers.add(f3);
+
+        // load animation
+        animRotate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate);
+        // set listener
+        animRotate.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
     }
 
     public void goButt(View view) {
         tempFlowers();
         rotateFlower();
         showReset();
-        chooseFlowers();
+        //chooseFlowers();
     }
 
     private void tempFlowers() {
@@ -83,7 +105,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rotateFlower() {
-
+        for(int i = 0; i < CONSTANTS.NUMB_FLOWERS; i++){
+            ImageView slot = slots.get(i); // get each ImageViews
+            slot.startAnimation(animRotate);
+        }
     }
 
     private void showReset() {
@@ -112,24 +137,24 @@ public class MainActivity extends AppCompatActivity {
 
         // Record Score!
         if(maxOccurances == 1)
-            money = money - 1;
+            money = money - CONSTANTS.COST_PER_ROLL;
         else if(maxOccurances == 2)
-            money = money + 2;
+            money = money + CONSTANTS.MATCH_2;
         else
-            money = money + 3;
+            money = money + CONSTANTS.MATCH_3;
 
         // Update your wallet
         wallet.setText(String.format("$%s", Integer.toString(money)));
 
         // Empty Wallet Condition
-        if(money == 0) {
+        if(money == CONSTANTS.YOUR_BROKE) {
             goButt.setEnabled(false);
             goButt.setVisibility(View.INVISIBLE);
         }
     }
 
     public void resetButt(View view) {
-        money = 5; // reset money to $5
+        money = startupCash; // reset money to $5
         wallet.setText(String.format("$%s", Integer.toString(money))); // reset wallet
         resetButt.setVisibility(View.INVISIBLE); // turn reset Button invisible
     }
