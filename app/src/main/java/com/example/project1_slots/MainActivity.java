@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Animation.AnimationListener {
     private static final String TAG = "Balsamo";
 
     // Animation
@@ -75,26 +75,11 @@ public class MainActivity extends AppCompatActivity {
         // load animation
         animRotate = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate);
         // set listener
-        animRotate.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
+        animRotate.setAnimationListener(this);
     }
 
     public void goButt(View view) {
-        tempFlowers();
         rotateFlower();
-        showReset();
-        //chooseFlowers();
     }
 
     private void tempFlowers() {
@@ -157,5 +142,21 @@ public class MainActivity extends AppCompatActivity {
         money = startupCash; // reset money to $5
         wallet.setText(String.format("$%s", Integer.toString(money))); // reset wallet
         resetButt.setVisibility(View.INVISIBLE); // turn reset Button invisible
+    }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+        tempFlowers();
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+        showReset();
+        chooseFlowers();
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
     }
 }
